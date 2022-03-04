@@ -1,0 +1,45 @@
+{%extends 'web/base.html'%}
+{% load static %}
+{%block content%}
+<style>
+.login{
+    padding: 10px 20px 20px 20px;
+    margin: 5px 200px 30px 200px;
+    background-color: #f2f2f2;
+}
+h5{
+    padding-top: 15px;
+}
+input:last-child{
+    margin-top: 15px !important;
+}
+.none{
+    display: none;
+}
+
+#id_email{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    margin: 5px 0;
+}
+.first-screen {
+        display: none !important;
+    }
+    .main-block__top {
+        display: none;
+    }
+    .load-more {
+        display: none;
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="login">
+        <h1>Email parolingizni ozgartiriladigan hat yuborildi! iltmos, pochtangizni tekshiring</h1>
+    </div>
+</div>
+{%endblock content%}

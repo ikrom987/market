@@ -1,0 +1,97 @@
+{% extends "control/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .delet {
+    background-color: rgb(240, 18, 18);
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-left: 40px;
+    font-weight: 600;
+}
+.delet:hover {
+    color: #fff !important;
+}
+.detai {
+    background-color: rgb(110, 108, 108) !important;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-left: 40px;
+    font-weight: 600;
+}
+.detai:hover {
+    color: #fff !important;
+}
+</style>
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+            <div class="p-5 mx-5 card card-body">
+                {% if code == 'create/product' %}
+                <div class="alert alert-success">
+                    <button class="close" data-dismiss='alert'>&times;</button>
+                    <h4>Product successfully created</h4>
+                </div>
+                {% elif code == 'edit/product' %}
+                <div class="alert alert-warning">
+                    <button class="close" data-dismiss='alert'>&times;</button>
+                    <h4>Product successfully edited</h4>
+                </div>
+                {% elif code == 'delete/product' %}
+                <div class="alert alert-danger">
+                    <button class="close" data-dismiss='alert'>&times;</button>
+                    <h4>Product successfully deleted</h4>
+                </div>
+                {% elif code == 'title/product' %}
+                <div class="alert alert-danger">
+                    <button class="close" data-dismiss='alert'>&times;</button>
+                    <h4>Title is dublicated</h4>
+                </div>
+                {% endif %}
+                
+                
+                    <h3 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 600; font-size: 30px;" class="">Products</h3>
+                    <br>
+                    <table class="table" style="background-color: #fff;">
+                        <tr class="table-bordered" style="background-color: rgb(240, 235, 235);">
+                            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Priority</th>
+                            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Title</th>
+                            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Products</th>
+                            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Price</th>
+                            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;"></th>
+                        </tr> 
+                        {% for product in products %}
+                        <tr class="table-bordered">
+                            <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{product.priority}}</td>
+                            <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{product.title}}</td>
+                            <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{product.category.title}}</td>
+                            <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{product.price}}</td>
+                            <td style="font-size: 20px !important; display: flex; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;">
+                                <a href="{% url 'product_detail' product.slug %}" style="margin-left: -70px; color: rgb(235, 227, 227);" class="detai">Detail </a>
+                            </td>
+                        </tr>
+                        {% endfor %}    
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+        
+
+
+
+
+
+
+</div>
+{% endblock content %}
+
+{% block js %}
+<script>
+    let notification = document.querySelector(".alert");
+
+    setTimeout(() => {
+        notification.classList.add("d-none")
+    }, 5000);
+</script>
+{% endblock js %}

@@ -1,0 +1,54 @@
+{% extends 'control/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .detail {
+    background-color: rgb(110, 108, 108) !important;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-left: 40px;
+    font-weight: 600;
+}
+.detail:hover {
+    color: #fff !important;
+}
+</style>
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+<div class="p-5 mt-5 mx-5 card card-body">
+    <h3 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 600; font-size: 30px;" class="">Orders</h3>
+
+    <br>
+    <table class="table" style="background-color: #fff !important;">
+        <tr class="table-bordered" style="background-color: rgb(240, 235, 235);">
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Created date</th>
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Customer</th>
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Phone</th>
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Total price</th>
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Processed</th>
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;"></th>
+        </tr> 
+        {% for order in orders %}
+            {% if order.complete %}
+            <tr class="table-bordered">
+                <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{order.date_create}}</td>
+                <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{order.account.user.username}}</td>
+                <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{order.phone}}</td>
+                <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{order.get_total_order_item_sum}}</td>
+                {% if order.proccessed %}
+                    <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: rgb(27, 158, 27) !important;">{{order.proccessed}}</td>
+                {% else %}
+                    <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: red !important;">{{order.proccessed}}</td>
+                {% endif %}    
+                <td><a href="{% url 'order_detail' order.id %}" style="font-size: 18px; color: rgb(235, 227, 227); margin-left: -55px;" class="detail">Detail</a></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

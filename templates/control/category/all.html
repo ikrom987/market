@@ -1,0 +1,103 @@
+{% extends "control/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+/* table {
+  border-collapse: collapse;
+} */
+/* .container {
+    width: auto;
+} */
+/* .content {
+    margin-top: 0px;
+    padding-top: 0px;
+} */
+  /* .content-page {
+    margin-left: 0px !important;
+    margin-top: 0px;
+} */
+.delete {
+    background-color: rgb(240, 18, 18);
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-left: 40px;
+    font-weight: 600;
+}
+.delete:hover {
+    color: #fff !important;
+}
+.detail {
+    background-color: rgb(110, 108, 108) !important;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-left: 40px;
+    font-weight: 600;
+}
+.detail:hover {
+    color: #fff !important;
+}
+</style>
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+<div class="p-5 mt-5 mx-5 card card-body">
+    {% if code == 'create' %}
+    <div class="alert alert-success">
+        <button class="close" data-dismiss='alert'>&times;</button>
+        <h4 style="color: rgb(15, 177, 15); font-size: 28px; padding-top: 10px;">Category successfully created</h4>
+    </div>
+    {% elif code == 'edit' %}
+    <div class="alert alert-warning">
+        <button class="close" data-dismiss='alert'>&times;</button>
+        <h4 style="color: rgb(188, 190, 31); font-size: 28px; padding-top: 10px;">Category successfully edited</h4>
+    </div>
+    {% elif code == 'delete' %}
+    <div class="alert alert-danger">
+        <button class="close" data-dismiss='alert'>&times;</button>
+        <h4 style="color: rgba(255, 38, 0, 0.726); font-size: 28px; padding-top: 10px;">Category successfully deleted</h4>
+    </div>
+    {% elif code == 'title' %}
+    <div class="alert alert-danger">
+        <button class="close" data-dismiss='alert'>&times;</button>
+        <h4 style="color: rgb(182, 143, 36); font-size: 28px; padding-top: 10px;">Title is dublicated</h4>
+    </div>
+    {% endif %}
+
+
+    <h3 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 600; font-size: 30px;" class="">Categories</h3>
+    <br>
+    <table class="table" style="background-color: #fff;">
+        <tr class="table-bordered" style="background-color: rgb(240, 235, 235);">
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Priority</th>
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Title</th>
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Products</th>
+            <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;"></th>
+        </tr> 
+        {% for category in categories %}
+        <tr class="table-bordered">
+            <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{category.priority}}</td>
+            <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{category.title}}</td>
+            <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{category.total_products}}</td>
+            <td style="font-size: 20px !important; display: flex; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;">
+                <a href="{% url 'category_detail' category.slug %}" style="color: rgb(235, 227, 227); margin-left: -55px; " class="detail">Detail </a>
+            </td>
+        </tr>
+        {% endfor %}    
+    </table>
+</div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block js %}
+<script>
+    let notification = document.querySelector(".alert");
+
+    setTimeout(() => {
+        notification.classList.add("d-none")
+    }, 1000);
+</script>
+{% endblock js %}

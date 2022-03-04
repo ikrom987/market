@@ -1,0 +1,38 @@
+{% extends "control/base.html" %}
+{% load static %}
+{% block content %}
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+<div class="p-5 mx-5 card card-body">
+    {% if code == 'title' %}
+    <div class="alert alert-danger">
+        <button class="close" data-dismiss='alert'>&times;</button>
+        <h4>Title is dublicated</h4>
+    </div>
+    {% endif %}
+    <h3 class="text-dark" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 30px; font-weight: 600;">Add New Category</h3\> 
+    <form action="{% url 'category_create' %}" method="POST" >
+        {% csrf_token %}
+        <h4 style=" font-size: 22px; margin-top: 25px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="">Priority</h4>
+        <input type="number" name="category_priority" placeholder="Enter category priority" required class="form-control form-control-lg">
+        <h4 class="mt-3" style=" font-size: 22px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Title</h4>
+        <input type="text" name="category_title" placeholder="Enter category title" required class="form-control form-control-lg">
+        <input type="submit" value="Create" class="btn btn-info btn-lg mt-3 pt-3" style="margin-top: 15px; font-size: 18px; border-radius: 5px; padding: 8px 25px !important;">
+    </form>
+</div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+<script>
+    let notification = document.querySelector(".alert");
+
+    setTimeout(() => {
+        notification.classList.add("d-none")
+    }, 5000);
+</script>
+{% endblock js %}

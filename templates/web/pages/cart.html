@@ -1,0 +1,229 @@
+{% extends 'web/base.html' %}
+{% load static %}    
+{% block content %}
+
+<style>
+    .first-screen {
+        display: none !important;
+    }
+    .main-block__top {
+        display: none;
+    }
+    .load-more {
+        display: none;
+    }
+    .remove_btn:hover {
+        color: red
+    }
+</style>    
+
+    <link rel="stylesheet" type="text/css" href="{% static 'web/assets/css/main.css' %}">       
+
+    <div class="page-container">
+
+        <!-- BEGIN HEADER -->
+
+        <!-- HEADER END -->  
+        
+        <!-- MOBILE NAVIGATION -->
+
+        <!-- MOBILE NAVIGATION END -->      
+
+        <!-- BEGIN MAIN -->
+        <main class="main">              
+
+            <!-- BEGIN INNER TOP -->
+            <div class="inner-top">
+                <div class="inner-top__main wrapper">
+                    <div class="inner-top__cols">
+                        <div class="inner-top__left">
+                            <h1 class="inner-top__title">Cart</h1>
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumbs__list">
+                                    <li class="breadcrumbs__item">
+                                        <a class="breadcrumbs__link" href="#">Home</a>
+                                    </li>
+                                    <li class="breadcrumbs__item">Cart</li>                                
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inner-top__right">
+                            <div class="inner-top__image" data-bg="{% static 'web/assets/img/svg/banner-cart.jpg' %}"></div>
+                        </div>                        
+                    </div>
+                    <img class="inner-top__bg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-lazy="{% static 'web/assets/img/svg/vector-inner-top.svg' %}" alt="">
+                </div>
+            </div>
+            <!-- INNER TOP END -->
+
+            <!-- BEGIN CART -->
+            <div class="cart-page wrapper">
+
+                <div class="cart-page__cols">
+
+                    <!-- BEGIN LEFT COLUMN -->
+                    <div class="cart-page__left">
+                        
+                        <div class="cart-table wishlist">
+                            
+                            <article class="wishlist__item">
+                                {% for o in order.orderitem_set.all %}
+                                    <div class="wishlist__cols">
+                                        <div class="wishlist__left">
+                                            <a class="wishlist__image-link" href="#">
+                                                <img class="wishlist__image" src="{{o.product.image_min.url}}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="wishlist__right">
+                                            <div class="wishlist__top wishlist__top_cart">
+                                                <div class="wishlist__col">
+                                                    <h2 class="wishlist__title">
+                                                        <a class="wishlist__link" href="product_page.html">{{o.product.title}}</a>
+                                                    </h2>
+                                                </div>
+                                                <div class="wishlist__col">
+                                                    <button class="wishlist__remove btn btn-danger remove-button remove_btn" data-id="{{o.id}}"></button>  
+                                                </div>                                    
+                                            </div>
+                                            <div class="wishlist__bottom wishlist__bottom_cart">
+                                                <div class="wishlist__cart-col">
+                                                    <span class="">{{o.product.price}} UZS</span>
+                                                </div>
+                                                <div class="wishlist__cart-col">
+                                                    <div class="wishlist__count count">
+                                                        <button data-price="{{o.product.price}}" type="button" class="quantity-left-minus product_minus count__button count__button_minus"></button>
+                                                        <input name="number" class=" product_quantity_number product_count count__input" type="text" value="{{o.quantity}}" maxlength="4">
+                                                        <button data-price="{{o.product__price}}" data-id="{{o.id}}" type="button" class="count__button count__button_plus  product_plus quantity-right-plus"></button>
+                                                    </div>                                    
+                                                </div>
+                                                <div class="wishlist__cart-col">
+                                                    <span class="wishlist__price wishlist__price_total product_total">{{ o.get_total }} UZS</span>
+                                                </div>                                                                        
+                                            </div>
+                                        </div>   
+                                    </div>
+                                {% endfor %}                                                                 
+                            </article>
+                            
+                        </div>
+
+                        <div class="cart-socials socials">
+                            <span class="cart-socials__text socials__text">Find us here:</span>
+                            <ul class="cart-socials__list socials__list">
+                                <li class="socials__item">
+                                    <a class="socials__link" href="#">Fb</a>
+                                </li>
+                                <li class="socials__item">
+                                    <a class="socials__link" href="#">Tw</a>
+                                </li> 
+                                <li class="socials__item">
+                                    <a class="socials__link" href="#">Ins</a>
+                                </li>
+                                <li class="socials__item">
+                                    <a class="socials__link" href="#">Pt</a>
+                                </li>                                                                           
+                            </ul>
+                        </div>                          
+                    </div>
+                    <!-- LEFT COLUMN END -->
+
+                    <!-- BEGIN RIGHT COLUMN -->
+                    <aside class="cart-page__right">
+                        <section class="your-order">
+                            <h3 class="your-order__title">Your order</h3>
+                            <ul class="your-order__list">
+                                <li class="your-order__item">
+                                    <div class="your-order__col">
+                                        <span class="your-order__text">Products:</span>
+                                    </div>
+                                    <div class="your-order__col">
+                                        <span class="your-order__text">{{order.get_total_order_item_count}}</span>
+                                    </div>                                
+                                </li>                                                        
+                            </ul>
+                            <div class="your-order__bottom">
+                                <div class="your-order__col">
+                                    <span class="your-order__bottom-text">Total</span>
+                                </div>
+                                <div class="your-order__col">
+                                    <span class="your-order__bottom-price">{{order.get_total_order_item_sum}} UZS</span>
+                                </div>                            
+                            </div>
+                            <button class="your-order__button button">
+                                <a style="color: #fff;" href="{% url 'web_checkout' %}" class="button__text">Checkout</a>
+                            </button>
+                        </section>
+                    </aside>
+                    <!-- RIGHT COLUMN END -->
+
+                </div>
+
+            </div>
+            <!-- CART END -->           
+
+        </main>
+        <script>
+            let btns_remove = document.querySelectorAll('.remove_btn');
+            btns_remove.forEach(btn => {
+                btn.addEventListener('click', ()=> {
+                    btn.parentElement.remove()
+                    fetch("/remove/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": csrftoken
+                        },
+                        body: JSON.stringify({
+                            id:  btn.dataset.id
+                        })
+                    }).then(resp => resp.json()).then(data => console.log(data))
+                })
+            })
+        
+            let product_plus = document.querySelectorAll('.product_plus')
+            let product_minus = document.querySelectorAll('.product_minus')
+            let product_count = document.querySelectorAll('.product_count')
+            let product_total = document.querySelectorAll('.product_total')
+        
+            product_plus.forEach((btn, i) => {
+                btn.addEventListener('click', ()=> {
+                    product_count[i].value = +product_count[i].value + 1
+                    product_total[i].innerText = +product_total[i].innerText + +btn.dataset.price
+                    document.querySelector('#cart_count').innerText = +document.querySelector('#cart_count').innerText + 1
+                    fetch("/plus/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": csrftoken
+                        },
+                        body: JSON.stringify({
+                            id: btn.dataset.id,
+                        })
+                    }).then(resp => resp.json()).then(data => console.log(data))
+                })
+            })
+            product_minus.forEach((btn, i) => {
+                btn.addEventListener('click', ()=> {
+                    if (product_count[i].value > 1) {
+                        product_count[i].value = +product_count[i].value - 1
+                        product_total[i].innerText = +product_total[i].innerText - +btn.dataset.price
+                        document.querySelector('#cart_count').innerText = +document.querySelector('#cart_count').innerText - 1        
+                    }
+                })
+            })
+        </script>
+        <!-- MAIN END -->
+        
+        <!-- BEGIN FOOTER -->
+
+        <!-- FOOTER END -->      
+
+    </div> 
+       
+    <script src="{% static 'web/assets/js/libs/jquery-3.5.1.min.js' %}"></script> 
+    <script src="{% static 'web/assets/js/libs/jquery-migrate-1.4.1.min.js' %}"></script>   
+    <script src="{% static 'web/assets/js/main.js' %}"></script> 
+
+
+
+{% endblock content %}

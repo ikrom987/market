@@ -1,0 +1,36 @@
+{% extends "web/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="product-tab js-tabs-content active" id="products-1">
+    <div class="main-catalog">
+        <div class="main-catalog__list">
+            {% for product in products %}
+                <article class="short-item">
+                    <div class="short-item__all">
+                        <a class="short-item__image-bg" href="{% url 'web_detail' product.slug %}">
+                            <img class="short-item__image" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-lazy="{{product.image_min.url}}" alt="">
+                        </a>
+                        <div class="short-item__top">
+                            <div class="short-item__cols">
+                                <div class="short-item__col">
+                                    <button class="heart-button js-toggle-active"></button>
+                                </div>                                        
+                            </div>
+                        </div>
+                        <h4 class="short-item__title">
+                            <a class="short-item__link" href="product_page.html">{{product.title}}</a>
+                        </h4>
+                        <span class="short-item__price">{{product.price}} UZS</span>
+                    </div>
+                </article>  
+            {% endfor %}                          
+        </div>
+        <img class="main-catalog__bg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-lazy="{% static 'web/assets/img/svg/vector-catalog.svg' %}" alt="">
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,91 @@
+{% extends "web/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .first-screen {
+        display: none !important;
+    }
+    .main-block__top {
+        display: none;
+    }
+    .load-more {
+        display: none;
+    }
+    .remove_btn:hover {
+        color: red
+    }
+</style> 
+ 
+    <link rel="stylesheet" type="text/css" href="{% static 'web/assets/css/main.css' %}">       
+
+
+    <div class="page-container">
+
+        <!-- BEGIN HEADER -->
+
+        <!-- HEADER END -->    
+        
+        <!-- MOBILE NAVIGATION -->
+
+        <!-- MOBILE NAVIGATION END -->          
+
+        <!-- BEGIN MAIN -->
+        <main class="main">              
+
+            <!-- BEGIN INNER TOP -->
+            <div class="inner-top">
+                <div class="inner-top__main wrapper">
+                    <div class="inner-top__cols">
+                        <div class="inner-top__left">
+                            <h1 class="inner-top__title">Oops!</h1>
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumbs__list">
+                                    <li class="breadcrumbs__item">
+                                        <a class="breadcrumbs__link" href="{% url 'web_index' %}">Home</a>
+                                    </li>
+                                    <li class="breadcrumbs__item">404</li>                                
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inner-top__right">
+                            <div class="inner-top__image" data-bg="{% static 'web/assets/img/svg/banner-404.jpg' %}"></div>
+                        </div>                        
+                    </div>
+                    <img class="inner-top__bg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-lazy="{% static 'web/assets/img/svg/vector-inner-top.svg' %}" alt="">
+                </div>
+            </div>
+            <!-- INNER TOP END -->
+
+            <!-- BEGIN 404 -->
+            <div class="page-404">
+                <div class="page-404__main wrapper">
+                    <div class="page-404__cols">
+                        <div class="page-404__left">
+                            <h2 class="page-404__title">404</h2>
+                            <h3 class="page-404__subtitle">Page not found</h3>
+                            <p class="page-404__text">It looks like nothing was found at this location. Maybe&nbsp;try a&nbsp;search?</p>                     
+                        </div>
+                        <div class="page-404__right">
+                            <img class="page-404__image" src="{% static 'web/assets/img/svg/404-bg.jpg' %}" alt="">
+                        </div>                    
+                    </div>
+                    <img class="page-404__vector" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-lazy="{% static 'web/assets/img/svg/vector-404.svg' %}" alt="">
+                </div>
+            </div>
+            <!-- 404 END -->
+
+        </main>
+        <!-- MAIN END -->
+        
+        <!-- BEGIN FOOTER -->
+
+        <!-- FOOTER END -->      
+
+    </div> 
+       
+
+    <script src="{% static 'web/assets/js/libs/jquery-3.5.1.min.js' %}"></script> 
+    <script src="{% static 'web/assets/js/libs/jquery-migrate-1.4.1.min.js' %}"></script>   
+    <script src="{% static 'web/assets/js/main.js' %}"></script>  
+
+{% endblock content %}

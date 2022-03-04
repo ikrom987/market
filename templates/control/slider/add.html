@@ -1,0 +1,63 @@
+{% extends "control/base.html" %} 
+{% load static %} 
+{% block content %} 
+ 
+<div class="content-page"> 
+    <!-- Start content --> 
+    <div class="content"> 
+        <div class="container"> 
+ 
+            <!-- Page-Title --> 
+             
+            <div class=""> 
+                <div class=""> 
+                    <div class=""> 
+                        <div class=""> 
+                            <div class=""> 
+                                <div class="col-md-12 col-sm-12 col-xs-12">     
+                                    <div class="p-5 mx-5 card card-body"> 
+                                        {% if code == 'title/product' %} 
+                                        <div class="alert alert-danger"> 
+                                            <button class="close" data-dismiss='alert'>&times;</button> 
+                                            <h4>Title is dublicated</h4> 
+                                        </div> 
+                                        {% endif %} 
+                                        <h3 class="text-dark" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 30px; font-weight: 600;">Add New Slider</h3\> 
+
+                                        <form action="{% url 'slider_create' %}" method="POST" enctype="multipart/form-data" class=""> 
+                                            {% csrf_token %} 
+                                            <h4 style=" font-size: 22px; margin-top: 25px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="mt-3">Title</h4> 
+                                            <input type="text" name="title" required placeholder="Enter title" class="form-control"> 
+                                            <!--  --> 
+                                            <h4 style=" font-size: 22px; margin-top: 25px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="mt-3">Image_Slider</h4> 
+                                            <input type="file" name="file" class="form-control"> 
+                                            <!--  --> 
+                                            <input type="submit" value="Create" style="margin-top: 15px; font-size: 18px; border-radius: 5px; padding: 8px 25px !important;" class="btn btn-info btn-lg my-3"> 
+                                        </form> 
+                                    </div> 
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+ 
+            </div> <!-- End Row --> 
+ 
+ 
+        </div> <!-- container --> 
+ 
+    </div> <!-- content --> 
+ 
+</div> 
+<!-- End Right content here --> 
+ 
+{% endblock content %} 
+{% block js %} 
+<script> 
+    let notification = document.querySelector(".alert"); 
+ 
+    setTimeout(() => { 
+        notification.classList.add("d-none") 
+    }, 5000); 
+</script> 
+{% endblock js %}

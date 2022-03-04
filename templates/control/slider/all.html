@@ -1,0 +1,87 @@
+{% extends "control/base.html" %} 
+{% load static %} 
+{% block content %} 
+ <style>
+     .detail {
+    background-color: rgb(110, 108, 108) !important;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-left: 40px;
+    font-weight: 600;
+}
+.detail:hover {
+    color: #fff !important;
+}
+ </style>
+<div class="content-page"> 
+    <!-- Start content --> 
+    <div class="content"> 
+        <div class="container"> 
+ 
+            <!-- Page-Title --> 
+             
+            <br> 
+        <div class="p-5 mx-5 card card-body"> 
+        {% if code == 'create/product' %} 
+        <div class="alert alert-success"> 
+            <button class="close" data-dismiss='alert'>&times;</button> 
+            <h4>Product successfully created</h4> 
+        </div> 
+        {% elif code == 'edit/product' %} 
+        <div class="alert alert-warning"> 
+            <button class="close" data-dismiss='alert'>&times;</button> 
+            <h4>Product successfully edited</h4> 
+        </div> 
+        {% elif code == 'delete/product' %} 
+        <div class="alert alert-danger"> 
+            <button class="close" data-dismiss='alert'>&times;</button> 
+            <h4>Product successfully deleted</h4> 
+        </div> 
+        {% elif code == 'title/product' %} 
+        <div class="alert alert-danger"> 
+            <button class="close" data-dismiss='alert'>&times;</button> 
+            <h4>Title is dublicated</h4> 
+        </div> 
+        {% endif %} 
+ 
+ 
+ 
+        <h3 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 600; font-size: 30px;" class="">Slider</h3>
+
+            <table class="table" style="background-color: #fff;"> 
+                <tr class="table-bordered" style="background-color: rgb(240, 235, 235);"> 
+                    <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Title</th> 
+                    <th style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #2a323c;">Data_create</th> 
+                    <th></th> 
+                </tr> 
+                {% for i in slid %} 
+                <tr class="table-bordered"> 
+                    <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{ i.title }}</td> 
+                    <td style="font-size: 20px !important; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; color: #2a323c !important;">{{ i.date_create }}</td> 
+                    <td style="font-size: 20px !important; display: flex; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;">
+                        <a href="{% url 'slider_detail' i.id %}" style="color: rgb(235, 227, 227); margin-left: -55px; " class="detail">Detail </a>
+                    </td>
+                </tr> 
+                {% endfor %} 
+            </table> 
+        </div> 
+ 
+                </div> <!-- container --> 
+ 
+            </div> <!-- content --> 
+ 
+ 
+        </div> 
+        <!-- End Right content here --> 
+ 
+{% endblock content %} 
+ 
+{% block js %} 
+<script> 
+    let notification = document.querySelector(".alert"); 
+ 
+    setTimeout(() => { 
+        notification.classList.add("d-none") 
+    }, 5000); 
+</script> 
+{% endblock js %}
